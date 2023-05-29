@@ -141,8 +141,7 @@ apiRouter.post(endpoint + 'produtos', checkToken, isAdmin, (req, res) => {
         descricao: req.body.descricao,
         valor: req.body.valor,
         marca: req.body.marca,
-    }, ['id'])
-        .then(produtos => res.status(201).json({ "id": usuario.id }))
+    }).then(produtos => res.status(201).json({ "id": produto.id }))
         .catch(err => {
             res.status(500).json({
                 message: 'Erro ao inserir produto - ' + err.message
@@ -155,7 +154,7 @@ apiRouter.put(endpoint + 'produtos/:id', checkToken, isAdmin, (req, res) => {
         descricao: req.body.descricao,
         valor: req.body.valor,
         marca: req.body.marca,
-    }).then(produtos => res.status(200).json({ "id": usuario.id }))
+    }).then(produtos => res.status(200).json({ "id": produto.id }))
         .catch(err => {
             res.status(500).json({
                 message: 'Erro ao remover produto - ' + err.message
@@ -165,7 +164,7 @@ apiRouter.put(endpoint + 'produtos/:id', checkToken, isAdmin, (req, res) => {
 
 apiRouter.delete(endpoint + 'produtos/:id', checkToken, isAdmin, (req, res) => {
     knex('produto').where('id', req.params.id)
-        .del().then(produtos => res.status(200).json({ "id": usuario.id }))
+        .del().then(produtos => res.status(200).json({ "id": produto.id }))
         .catch(err => {
             res.status(500).json({
                 message: 'Erro ao remover produto - ' + err.message
